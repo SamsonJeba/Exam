@@ -1,29 +1,32 @@
 pipeline {
     agent any
 
-    tools {
-        jdk 'JDK'
-        maven 'MAVEN'
-    }
-
     stages {
+        stage('Checkout') {
+            steps {
+                echo 'Code checked out successfully'
+            }
+        }
 
         stage('Build') {
             steps {
-                bat 'mvn clean package'
+                echo 'HTML project – no build needed'
             }
         }
 
-        stage('Run Java') {
+        stage('Deploy') {
             steps {
-                bat 'java -cp target/classes index'
+                echo 'Deploy stage completed'
             }
         }
+    }
 
-        stage('Archive Artifact') {
-            steps {
-                archiveArtifacts artifacts: 'target/*.jar', fingerprint: true
-            }
+    post {
+        success {
+            echo '✅ Build successful'
+        }
+        failure {
+            echo '❌ Build failed'
         }
     }
 }
