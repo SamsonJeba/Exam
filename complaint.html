@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Complaint System</title>
+    <style>
+        /* CSS Styling */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .complaint-card {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 450px;
+        }
+        h2 { color: #1c1e21; margin-bottom: 20px; text-align: center; }
+        label { display: block; margin-bottom: 5px; font-weight: 600; color: #4b4f56; }
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #dddfe2;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        button:hover { background-color: #0056b3; }
+        #responseMessage {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 6px;
+            text-align: center;
+            font-weight: 600;
+        }
+        .success { background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+    </style>
+</head>
+<body>
+
+<div class="complaint-card">
+    <h2>Submit a Complaint</h2>
+    <form id="complaintForm">
+        <label for="name">Full Name</label>
+        <input type="text" id="name" required placeholder="John Doe">
+
+        <label for="email">Email Address</label>
+        <input type="email" id="email" required placeholder="john@example.com">
+
+        <label for="category">Category</label>
+        <select id="category">
+            <option value="Billing">Billing Issue</option>
+            <option value="Technical">Technical Support</option>
+            <option value="Service">Customer Service</option>
+            <option value="Other">Other</option>
+        </select>
+
+        <label for="message">Details</label>
+        <textarea id="message" rows="4" required placeholder="Describe your issue here..."></textarea>
+
+        <button type="submit">Submit Complaint</button>
+    </form>
+
+    <div id="responseMessage" class="success">
+        Thank you! Your complaint has been submitted successfully.
+    </div>
+</div>
+
+<script>
+    // JavaScript Logic
+    document.getElementById('complaintForm').addEventListener('submit', function(e) {
+        e.preventDefault(); // Prevents the page from refreshing
+
+        // Simple validation or data processing can happen here
+        const name = document.getElementById('name').value;
+        console.log("Complaint received from:", name);
+
+        // Hide the form and show the success message
+        this.style.display = 'none';
+        const status = document.getElementById('responseMessage');
+        status.style.display = 'block';
+    });
+</script>
+
+</body>
+</html>
